@@ -16,7 +16,7 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 creds = ServiceAccountCredentials.from_json_keyfile_name('cred.json', scope)
 creds2 = ServiceAccountCredentials.from_json_keyfile_name('creds.json', scope)
 # authorize the clientsheet
-client = gspread.authorize(creds)
+client = gspread.authorize(creds2)
 client2 = gspread.authorize(creds2)
 # get the instance of the Spreadsheet
 sheet = client.open('counter')
@@ -83,7 +83,7 @@ def assign(rt):
     global apis,apis_filtered,errors
     rests=(300*len(apis_filtered))+1
     count+=1
-    modul=10
+    modul=20
     last_row = str(int(next_available_row(sheet_instance))-1)
     last_count=sheet_instance.acell('B'+last_row).value
     next_row = next_available_row(sheet_instance)
@@ -124,7 +124,7 @@ class StreamListener(tweepy.StreamListener):
 
           #sleep(SLEEP_TIME)
           i=1
-          modul=10
+          modul=20
           apii=''
           rt=0
           selected=0
