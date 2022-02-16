@@ -177,7 +177,7 @@ def lehager():
 ##    todtweet=soup.find_all('span', class_='bctt-ctt-text')
     todtweet2=soup.find_all('div', class_='wp-block-ub-content-toggle-accordion')
     melkt=todtweet2[0].find_all('span', class_='bctt-ctt-text')
-    arst=todtweet2[0].find_all('p', class_='wp-block-ub-content-toggle-accordion-title ub-content-toggle-title-008ec0a7-e41c-4127-8bb5-a81c07dffede')
+    arst=todtweet2[0].find_all('p')
 ##    print(arst[0].get_text())
 ##    print(melkt[0].get_text())
     msgo=["LEHAGER TWITTER CAMPAIGN " +arst[0].get_text()] 
