@@ -88,7 +88,7 @@ def assign(rt):
     global apis,apis_filtered,errors
     rests=(300*len(apis_filtered))+1
     count+=1
-    modul=20
+    modul=10
     last_row = str(int(next_available_row(sheet_instance))-1)
     last_count=sheet_instance.acell('B'+last_row).value
     next_row = next_available_row(sheet_instance)
@@ -130,7 +130,7 @@ class StreamListener(tweepy.StreamListener):
 
           #sleep(SLEEP_TIME)
           i=1
-          modul=20
+          modul=10
           apii=''
           rt=0
           selected=0
