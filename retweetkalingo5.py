@@ -11,6 +11,10 @@ from datetime import datetime
 import pytz
 import streamlit as st
 from oauth2client.service_account import ServiceAccountCredentials
+'''
+WELCOME TO RETWEETER APP
+'''
+
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 # add credentials to the account
@@ -144,7 +148,7 @@ class StreamListener(tweepy.StreamListener):
           #print("------------------------------------------------------------------------")
 ##          print(configacc[selected])
           if count % modul==0:
-            print(configacc[selected])
+            st.text(configacc[selected])
           #print("--------------------------")
           lists = ['EthiopiaResili1','OI1LnOY3iWbQlWT','SecondLine18','kaleabhaile8','5iiOZuZTr4kWBVY','mare69509315','HahuL07']
           if status.user.screen_name not in lists:
@@ -162,19 +166,19 @@ class StreamListener(tweepy.StreamListener):
                 rt+=1
                 counter2=assign(rt)
                 if count % modul==0:
-                 print("========================================================================")
+                 st.text("========================================================================")
                 apis.pop(selected)
                 configacc.pop(selected)
                 accs-=1
                 if count % modul==0:
-                     print(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
+                     st.text(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
                      #get_apis()
                 counter2+=1
                 minsleep=int(36/len(apis_filtered)-1)+1
                 sleep(random.randrange(minsleep,18-len(apis_filtered)))
 
               except tweepy.TweepError as e:
-                print(e.reason)
+                st.text(e.reason)
                 if errors[configacc[selected]]>=11:
                     configacc.pop(selected)
                     accs-=1
@@ -206,7 +210,7 @@ class StreamListener(tweepy.StreamListener):
 
               rests=(300*len(apis_filtered))
               if counter2>=rests+1:
-              	print('limit reached')
+              	st.text('limit reached')
               	#get_apis()
               	sleep(15*60)
               	counter2=0
@@ -216,7 +220,7 @@ class StreamListener(tweepy.StreamListener):
 
 
         except tweepy.TweepError as e:
-        	print(e.reason)
+        	st.text(e.reason)
         	pass
 
     	#status.retweet()
@@ -270,21 +274,7 @@ if __name__ == "__main__":
 ##    configacc2=['EthiopiaResili1','SecondLine18','kaleabhaile8']
     #configacc2.pop(1)
     get_apis()
-    '''
-    for i in range(1,7):
-        fname="config"+str(i)+".yaml"
-        data =  process_yaml(fname)
-        CONSUMER_KEY = app_key(data,i)
-        CONSUMER_SECRET = app_secret(data,i)
-        ACCESS_KEY = oauth_token(data,i)
-        ACCESS_SECRET = oauth_token_secret(data,i)
-        auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-        auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-        api = tweepy.API(auth)
-        apis.append(api)
-        apis_filtered.append(api)
-
-    '''
+  
 
 #########################THIS TWO LINES REMOVE RESILIANCE ACCOUNT FROM RETWEETING#################################################
     #apis.pop(0)
