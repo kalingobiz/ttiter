@@ -13,3 +13,5 @@ pandas
 oauth2client
 PyYAML==5.3.1
 tweepy==3.10.0
+streamlit
+altair
