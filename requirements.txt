@@ -9,3 +9,5 @@ beautifulsoup4==4.10.0
 gspread
 requests
 bs4
+pandas
+oauth2client
