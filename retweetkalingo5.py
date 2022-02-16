@@ -9,6 +9,7 @@ import gspread
 import pandas as pd
 from datetime import datetime
 import pytz
+import streamlit as st
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
@@ -93,6 +94,7 @@ def assign(rt):
     time = datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime("%H:%M:%S")
     #print(count)
     if count % modul==0:
+        st.text(count)
         if datetime.fromisoformat(datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime('%Y-%m-%d'))>datetime.fromisoformat(last_date):
             sheet_instance.update_acell("A{}".format(next_row), today)
             sheet_instance.update_acell("B{}".format(next_row), modul)
