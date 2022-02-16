@@ -11,10 +11,6 @@ from datetime import datetime
 import pytz
 import streamlit as st
 from oauth2client.service_account import ServiceAccountCredentials
-'''
-WELCOME TO RETWEETER APP
-'''
-
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 # add credentials to the account
@@ -88,7 +84,7 @@ def assign(rt):
     global apis,apis_filtered,errors
     rests=(300*len(apis_filtered))+1
     count+=1
-    modul=10
+    modul=20
     last_row = str(int(next_available_row(sheet_instance))-1)
     last_count=sheet_instance.acell('B'+last_row).value
     next_row = next_available_row(sheet_instance)
@@ -130,7 +126,7 @@ class StreamListener(tweepy.StreamListener):
 
           #sleep(SLEEP_TIME)
           i=1
-          modul=10
+          modul=20
           apii=''
           rt=0
           selected=0
@@ -148,7 +144,7 @@ class StreamListener(tweepy.StreamListener):
           #print("------------------------------------------------------------------------")
 ##          print(configacc[selected])
           if count % modul==0:
-            st.text(configacc[selected])
+            print(configacc[selected])
           #print("--------------------------")
           lists = ['EthiopiaResili1','OI1LnOY3iWbQlWT','SecondLine18','kaleabhaile8','5iiOZuZTr4kWBVY','mare69509315','HahuL07']
           if status.user.screen_name not in lists:
@@ -166,19 +162,19 @@ class StreamListener(tweepy.StreamListener):
                 rt+=1
                 counter2=assign(rt)
                 if count % modul==0:
-                 st.text("========================================================================")
+                 print("========================================================================")
                 apis.pop(selected)
                 configacc.pop(selected)
                 accs-=1
                 if count % modul==0:
-                     st.text(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
+                     print(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
                      #get_apis()
                 counter2+=1
                 minsleep=int(36/len(apis_filtered)-1)+1
                 sleep(random.randrange(minsleep,18-len(apis_filtered)))
 
               except tweepy.TweepError as e:
-                st.text(e.reason)
+                print(e.reason)
                 if errors[configacc[selected]]>=11:
                     configacc.pop(selected)
                     accs-=1
@@ -210,7 +206,7 @@ class StreamListener(tweepy.StreamListener):
 
               rests=(300*len(apis_filtered))
               if counter2>=rests+1:
-              	st.text('limit reached')
+              	print('limit reached')
               	#get_apis()
               	sleep(15*60)
               	counter2=0
@@ -220,7 +216,7 @@ class StreamListener(tweepy.StreamListener):
 
 
         except tweepy.TweepError as e:
-        	st.text(e.reason)
+        	print(e.reason)
         	pass
 
     	#status.retweet()
@@ -274,7 +270,10 @@ if __name__ == "__main__":
 ##    configacc2=['EthiopiaResili1','SecondLine18','kaleabhaile8']
     #configacc2.pop(1)
     get_apis()
-  
+    '''
+    RETWEET APP
+
+    '''
 
 #########################THIS TWO LINES REMOVE RESILIANCE ACCOUNT FROM RETWEETING#################################################
     #apis.pop(0)
