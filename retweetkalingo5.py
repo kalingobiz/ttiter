@@ -172,7 +172,7 @@ class StreamListener(tweepy.StreamListener):
                 sleep(random.randrange(minsleep,18-len(apis_filtered)))
 
               except tweepy.TweepError as e:
-               # print(e.reason)
+                print(e.reason)
                 if errors[configacc[selected]]>=11:
                     configacc.pop(selected)
                     accs-=1
