@@ -1,7 +1,7 @@
 import tweepy
 from time import sleep
 
-import pandas as pd
+
 from oauth2client.service_account import ServiceAccountCredentials
 import yaml
 ##ky=input("Enter Twitter APP No: ")
