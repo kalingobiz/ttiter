@@ -32,7 +32,7 @@ d= np.empty([5,5],dtype=str)
 __x__="jhjh "
 import pandas as pd
 
-import basic
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets, svm, metrics
