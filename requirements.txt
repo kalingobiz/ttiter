@@ -9,3 +9,5 @@ keras
 tensorflow
 flask
 pandas
+pickle
+numpy 
