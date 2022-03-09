@@ -84,7 +84,7 @@ def assign(rt):
     global apis,apis_filtered,errors
     rests=(300*len(apis_filtered))+1
     count+=1
-    modul=20
+    modul=15
     last_row = str(int(next_available_row(sheet_instance))-1)
     last_count=sheet_instance.acell('B'+last_row).value
     next_row = next_available_row(sheet_instance)
@@ -92,9 +92,9 @@ def assign(rt):
 
     today=datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime('%Y-%m-%d')
     time = datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime("%H:%M:%S")
-    #print(count)
+    print(count)
     if count % modul==0:
-##        st.text(count)
+##        print(count)
         if datetime.fromisoformat(datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime('%Y-%m-%d'))>datetime.fromisoformat(last_date):
             sheet_instance.update_acell("A{}".format(next_row), today)
             sheet_instance.update_acell("B{}".format(next_row), modul)
@@ -126,7 +126,7 @@ class StreamListener(tweepy.StreamListener):
 
           #sleep(SLEEP_TIME)
           i=1
-          modul=20
+          modul=15
           apii=''
           rt=0
           selected=0
@@ -143,6 +143,9 @@ class StreamListener(tweepy.StreamListener):
          # print("========================================================================")
           #print("------------------------------------------------------------------------")
 ##          print(configacc[selected])
+          print(status.user.screen_name)
+          print("------------------------------------------------------------------------")
+          print("Selected user: ",configacc[selected])
           if count % modul==0:
             print(configacc[selected])
           #print("--------------------------")
@@ -155,12 +158,13 @@ class StreamListener(tweepy.StreamListener):
               counter2=count
               try:
                 apis[selected].retweet(status.id_str)
+                rt+=1
+                counter2=assign(rt)
                 try:
                     apis[selected].create_favorite(status.id_str)
                 except:
                     pass
-                rt+=1
-                counter2=assign(rt)
+                
                 if count % modul==0:
                  print("========================================================================")
                 apis.pop(selected)
@@ -296,7 +300,7 @@ if __name__ == "__main__":
             stream.filter(track=tags)
             print("working")
         except Exception as e:
-        	print(e)
+        	print("Error")
         	pass
        # print('pass')
 

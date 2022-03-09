@@ -10,7 +10,7 @@ import pandas as pd
 from datetime import datetime
 import pytz
 from oauth2client.service_account import ServiceAccountCredentials
-import streamlit as st
+
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 '''
@@ -96,7 +96,7 @@ def assign(rt):
     last_count=sheet_instance.acell('B'+last_row).value
     today=datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime('%Y-%m-%d')
     time = datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime("%H:%M:%S")
-    #print(count)
+    print(count)
     if count % modul==0:
         if datetime.fromisoformat(datetime.now(pytz.timezone('Africa/Addis_Ababa')).strftime('%Y-%m-%d'))>datetime.fromisoformat(last_date):
             sheet_instance.update_acell("A{}".format(next_row), today)
@@ -145,8 +145,11 @@ class StreamListener(tweepy.StreamListener):
          # print("========================================================================")
           #print("------------------------------------------------------------------------")
           #print(configacc[selected])
+          print(status.user.screen_name)
+          print("------------------------------------------------------------------------")
+          print("Selected user: ",configacc[selected])
           if count % modul==0:
-            st.text(configacc[selected])
+            print(configacc[selected])
           #print("--------------------------")
           usrs = ['EthiopiaResili1','OI1LnOY3iWbQlWT','SecondLine18','kaleabhaile8','5iiOZuZTr4kWBVY','mare69509315','HahuL07']
           if status.user.screen_name not in usrs:
@@ -159,26 +162,27 @@ class StreamListener(tweepy.StreamListener):
               counter2=count
               try:
                 apis[selected].retweet(status.id_str)
+                rt+=1
+                counter2=assign(rt)
                 try:
                     apis[selected].create_favorite(status.id_str)
                 except:
                     pass
-                rt+=1
-                counter2=assign(rt)
+                
                 if count % modul==0:
-                 st.text("========================================================================")
+                 print("========================================================================")
                 apis.pop(selected)
                 configacc.pop(selected)
                 accs-=1
                 if count % modul==0:
-                     st.text(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
+                     print(str(counter2)+'. '+ 'Retweeting users: @'+status.user.screen_name)
                      #get_apis()
                 counter2+=1
                 minsleep=int(36/len(apis_filtered)-1)+1
                 sleep(random.randrange(minsleep,18-len(apis_filtered)))
 
               except tweepy.TweepError as e:
-                st.text(e.reason)
+                print(e.reason)
                 if errors[configacc[selected]]>=11:
                     configacc.pop(selected)
                     accs-=1
@@ -210,7 +214,7 @@ class StreamListener(tweepy.StreamListener):
 
               rests=(300*len(apis_filtered))
               if counter2>=rests+1:
-              	st.text('limit reached')
+              	print('limit reached')
               	get_apis()
               	sleep(15*60)
               	counter2=0
@@ -220,7 +224,7 @@ class StreamListener(tweepy.StreamListener):
 
 
         except tweepy.TweepError as e:
-        	st.text(e.reason)
+        	print(e.reason)
         	pass
 
     	#status.retweet()
@@ -292,7 +296,7 @@ if __name__ == "__main__":
             stream.filter(track=tags)
             print("working")
         except Exception as e:
-        	print(e)
+        	print('Error')
         	pass
        # print('pass')
 
