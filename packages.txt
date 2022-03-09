@@ -1,9 +1,2 @@
-libopencv-calib3d2.4v5
-libopencv-contrib2.4v5 
-libopencv-features2d2.4v5
-libopencv-highgui2.4-deb0
-libopencv-legacy2.4v5
-libopencv-objdetect2.4v5
-python-numpy-abi9
-python-numpy 
-python-opencv
+libglib2.0-0
+libgtk2.0-dev
