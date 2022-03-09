@@ -10,3 +10,4 @@ tensorflow
 flask
 pandas
 numpy>= 1:1.6.1
+cv2wrap
