@@ -2,6 +2,7 @@ selenium
 telegram
 Telethon
 pytz
+flask
 python-telegram-bot
 langdetect
 googletrans==4.0.0rc1
