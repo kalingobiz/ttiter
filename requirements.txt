@@ -2,6 +2,10 @@ selenium
 telegram
 Telethon
 pytz
+opencv-python
+sklearn
+keras
+tensorflow
 flask
 python-telegram-bot
 langdetect
