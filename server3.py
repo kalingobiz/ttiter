@@ -114,4 +114,4 @@ def upload_files():
   	
 		
 if __name__ == '__main__':
-   app.run(host="share.streamlit.io/kalingobiz/ttiter/main/server3.py", port=8082, debug=False)
+   app.run(host="localhost", port=5002, debug=False)
