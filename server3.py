@@ -23,9 +23,9 @@ from sklearn import datasets, svm, metrics
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
 default_image_size = tuple((256, 256))
-model = load_model('C:/Users/kal/Documents/ttiter/ggg.h5')
+model = load_model('ggg.h5')
 
-label_encoder = open(r'H:/label_transform.pkl', 'rb')
+label_encoder = open(r'label_transform.pkl', 'rb')
 label_transformer = pickle.load(label_encoder)
 
 def convert_image_to_array(image_dir):
